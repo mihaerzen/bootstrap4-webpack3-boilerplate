@@ -1,0 +1,43 @@
+{
+  "name": "bootstrap4-webpack2-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mihaerzen/bootstrap4-webpack2-boilerplate.git",
+  "author": "Miha Eržen <miha.erzen1@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "yarnpkg eslint && npm-run-all --parallel test-*",
+    "eslint": "./node_modules/.bin/eslint .",
+    "validate-webpack": "npm-run-all --parallel validate-webpack:*",
+    "validate-webpack:dev": "webpack-validator webpack.config.js --env.development",
+    "validate-webpack:prod": "webpack-validator webpack.config.js --env.production",
+    "rmrf": "rm -rf dist",
+    "build:dev": "yarnpkg rmrf && webpack --env.development",
+    "build:prod": "yarnpkg rmrf && webpack -p --env.production",
+    "build": "yarnpkg build:dev",
+    "serve": "webpack-dev-server --env.development --content-base dist --inline --hot --host 0.0.0.0",
+    "serve:prod": "webpack-dev-server --env.production --content-base dist --host 0.0.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "4.0.0-alpha.6",
+    "holderjs": "^2.9.4",
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "css-loader": "^0.28.4",
+    "eslint": "^4.1.1",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.6.1",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "html-webpack-plugin": "^2.29.0",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.0.2",
+    "postcss-loader": "^2.0.6",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
+  }
+}
