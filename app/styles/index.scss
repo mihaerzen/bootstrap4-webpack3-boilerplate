@@ -1,4 +1,6 @@
-@import "~bootstrap/scss/bootstrap.scss";
+@import "override-bootstrap-defaults";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
 body {
   min-height: 75rem; /* Can be removed; just added for demo purposes */
 }

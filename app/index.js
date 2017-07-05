@@ -2,7 +2,7 @@ import 'bootstrap';
 import Holder from 'holderjs';
 import $ from 'jquery';
 
-import './index.scss';
+import './styles/index.scss';
 
 /*
  * I didn't use arrow callback because in the current version of webpack
