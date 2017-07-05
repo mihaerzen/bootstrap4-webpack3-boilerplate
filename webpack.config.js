@@ -3,6 +3,8 @@ const resolve = require('path').resolve;
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 /*
  * Define source & build directories
@@ -13,6 +15,7 @@ const buildDirectory = resolve(__dirname, 'dist');
 module.exports = (env) => {
   const isProduction = env.production;
   const publicPath = '/';
+  const imagesLocation = 'images/';
 
   const extractSass = new ExtractTextPlugin({
     filename: '[name].[contenthash].css',
@@ -64,6 +67,22 @@ module.exports = (env) => {
       ],
     },
     plugins: [
+      new CopyWebpackPlugin([{
+        from: imagesLocation,
+        to: imagesLocation,
+      }]),
+
+      new ImageminPlugin({
+        disable: !isProduction,
+        test: `${imagesLocation}/**`,
+        optipng: {
+          optimizationLevel: 5,
+        },
+        jpegtran: {
+          progressive: true,
+        },
+      }),
+
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: './index.html',
